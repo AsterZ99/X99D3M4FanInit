@@ -1,0 +1,6 @@
+LibreHardwareMonitorLib 0.9.6
+License: Mozilla Public License 2.0 (MPL-2.0)
+Source: https://github.com/LibreHardwareMonitor/LibreHardwareMonitor
+NuGet: https://www.nuget.org/packages/LibreHardwareMonitorLib/0.9.6
+
+This distribution uses the unmodified library and its PawnIO restricted LPC module. It does not bundle the legacy WinRing0 generic driver.
