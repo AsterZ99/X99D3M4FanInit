@@ -1,0 +1,20 @@
+name: build
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  windows-x64:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet restore X99D3M4FanInit.csproj -r win-x64
+      - run: dotnet build X99D3M4FanInit.csproj -c Release --no-restore
+      - run: dotnet publish X99D3M4FanInit.csproj -c Release -r win-x64 --self-contained true --no-restore -o artifacts/publish
+      - name: Add distribution files
+        shell: pwsh
+        run: Copy-Item Install.cmd,Install.ps1,Check.cmd,Check.ps1,Uninstall.cmd,Uninstall.ps1,Run-Once.cmd,README.md,LICENSE.txt,THIRD-PARTY-NOTICES.txt artifacts/publish
+      - uses: actions/upload-artifact@v4
+        with:
+          name: X99D3M4FanInit-win-x64
+          path: artifacts/publish
