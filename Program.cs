@@ -8,7 +8,7 @@ namespace X99D3M4FanInit;
 
 internal static class Program
 {
-    private const string Version = "1.2.0";
+    private const string Version = "1.2.1";
     private const ushort ExpectedVendorId = 0x5CA3;
 
     public static int Main(string[] args)
