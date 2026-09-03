@@ -16,7 +16,7 @@ if ($null -ne $log) {
     Write-Host ''
     Write-Host "Latest log: $($log.FullName)"
     Write-Host ''
-    Get-Content -LiteralPath $log.FullName
+    Get-Content -LiteralPath $log.FullName -Encoding UTF8
 } else {
     Write-Host ''
     Write-Host 'The task exists, but no log was found yet. Wait a few seconds and try again.' -ForegroundColor Yellow
