@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <AssemblyName>X99D3M4FanInit</AssemblyName>
     <RootNamespace>X99D3M4FanInit</RootNamespace>
-    <Version>1.2.2</Version>
+    <Version>1.2.3</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
