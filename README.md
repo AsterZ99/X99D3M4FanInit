@@ -39,6 +39,18 @@ bit0 = 0  -> PWM 输出
 
 日志位于 `%ProgramData%\X99D3M4FanInit\logs`。
 
+### 如何确认安装成功
+
+`Check.cmd` 应显示以下关键信息：
+
+- `Status: Ready` 和 `Scheduled Task State: Enabled`；
+- `Schedule Type: At system start up`；
+- `Run As User: SYSTEM`；
+- `Last Result: 0`；
+- 日志中的芯片识别、`VendorID: 0x5CA3` 和 `ExitCode: 0`。
+
+`Bank0:04 before: 0x00` 表示 SYS_FAN 在本次检查时已经是 PWM，因此程序无需重复写入。早期版本的 `Check.cmd` 可能把已经存在的 SYSTEM 任务误报为未安装；从 v1.2.2 起改用 `schtasks.exe` 查询。v1.2.2 还可能因 Windows PowerShell 5.1 默认文本编码而把日志中的中文显示成乱码，这只影响显示；v1.2.3 起明确按 UTF-8 读取日志。
+
 ## 安全边界
 
 程序没有任意地址/值写入接口，只会清除 `Bank0:04 bit0`。芯片、HWM 基址、Vendor ID、ISA 锁或回读任一校验失败都会拒绝写入。`--unattended` 只省略人工确认，不绕过安全校验。工具不修改占空比、不处理 Tach/RPM，也不包含旧式 WinRing0 驱动。
